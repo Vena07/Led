@@ -1,0 +1,58 @@
+import machine
+import time
+
+vybrano = 4
+
+led1 = machine.Pin(0, machine.Pin.OUT)
+led2 = machine.Pin(1, machine.Pin.OUT)
+led4 = machine.Pin(2, machine.Pin.OUT)
+
+
+
+
+led3 = machine.Pin(3, machine.Pin.OUT)
+
+button1 = machine.Pin(14, machine.Pin.IN, machine.Pin.PULL_DOWN)
+button2 = machine.Pin(15, machine.Pin.IN, machine.Pin.PULL_DOWN)
+button3 = machine.Pin(17, machine.Pin.IN, machine.Pin.PULL_DOWN)
+button4 = machine.Pin(16, machine.Pin.IN, machine.Pin.PULL_DOWN)
+
+led1.value(0)
+led2.value(0)
+led3.value(0)
+led4.value(0)
+
+led = [led1,led2,led3,led4]
+
+def cykli(cas):
+    for i in range(len(led)):
+            led[i].value(1)
+            time.sleep(cas)
+
+def vypnout():
+    for i in range(len(led)):
+            led[i].value(0)
+
+while True:
+    
+    if button1.value() == 1 :
+        print("button1")
+        vypnout()
+        cykli(0)
+        
+    elif button2.value() == 1 :
+        print("button2")
+        vypnout()
+        cykli(0.5)
+    
+
+    elif button3.value() == 1  :
+        print("button3")
+        vypnout()
+        cykli(0.1)
+   
+    elif button4.value() == 1 :
+        print("button4")
+        vybrano = 4
+        vypnout()
+        
